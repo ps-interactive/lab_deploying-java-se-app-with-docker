@@ -1,0 +1,17 @@
+#!/bin/bash
+# Count FROM statements
+from_count=$(grep -c -E "^\s*FROM" Dockerfile)
+if [ "$from_count" -ne 2 ]; then
+  echo "AssertionFailedError: Expected two FROM instructions for a multi-stage build."
+  exit 1
+fi
+# Check for the second FROM statement and its WORKDIR
+if ! sed '1,/^\s*FROM.*AS build/d' Dockerfile | grep -q -E "^\s*FROM\s+openjdk:17-jre-slim"; then
+  echo "AssertionFailedError: The second stage must use 'FROM openjdk:17-jre-slim'."
+  exit 1
+fi
+if ! sed '1,/^\s*FROM.*AS build/d' Dockerfile | grep -q -E "^\s*WORKDIR\s+/app"; then
+  echo "AssertionFailedError: The second stage must also have a 'WORKDIR /app'."
+  exit 1
+fi
+echo "Test Passed"

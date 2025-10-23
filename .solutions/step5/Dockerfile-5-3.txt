@@ -1,0 +1,11 @@
+FROM openjdk:17-jdk-slim AS build
+WORKDIR /app
+COPY . .
+RUN javac src/main/java/com/example/SimpleWebServer.java
+
+# Second Stage
+FROM openjdk:17-jre-slim
+WORKDIR /app
+COPY --from=build /app/src/main/java/com/example/SimpleWebServer.class .
+EXPOSE 8080
+CMD ["java", "com.example.SimpleWebServer"]

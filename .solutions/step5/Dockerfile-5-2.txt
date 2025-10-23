@@ -1,0 +1,8 @@
+FROM openjdk:17-jdk-slim AS build
+WORKDIR /app
+COPY . .
+RUN javac src/main/java/com/example/SimpleWebServer.java
+
+# Second Stage
+FROM openjdk:17-jre-slim
+WORKDIR /app

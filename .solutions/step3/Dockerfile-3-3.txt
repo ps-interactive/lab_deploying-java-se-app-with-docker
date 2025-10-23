@@ -1,0 +1,8 @@
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+
+COPY . .
+RUN javac src/main/java/com/example/SimpleWebServer.java
+
+EXPOSE 8080
+CMD ["java", "-cp", "src/main/java", "com.example.SimpleWebServer"]
