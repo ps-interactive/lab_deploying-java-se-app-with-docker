@@ -1,12 +1,15 @@
 FROM openjdk:21-jdk-slim AS build
 WORKDIR /app
-
 COPY . .
-RUN javac src/main/java/com/example/SimpleWebServer.java
+
+RUN mkdir /app/classes
+RUN javac -d /app/classes src/main/java/com/example/SimpleWebServer.java
 
 # Second Stage
 FROM openjdk:21-jdk-slim
 WORKDIR /app
-COPY --from=build /app/src/main/java/com/example/SimpleWebServer.class .
+
+COPY --from=build /app/classes .
+
 EXPOSE 8080
 CMD ["java", "com.example.SimpleWebServer"]
