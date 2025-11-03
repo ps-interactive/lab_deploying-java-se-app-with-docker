@@ -7,7 +7,7 @@ Here you'll find the checks for the objectives you find in the lab instructions.
 {% task %}
 The first step in creating a Docker image is defining its foundation. In the `Dockerfile`, you need to specify a base image and set up the container's filesystem.
 
-*   **Base Image (`FROM`):** Every `Dockerfile` must start with a `FROM` instruction. This specifies the parent image from which you are building. For a Java application, a base image containing a Java Development Kit (JDK) is required for compilation. We'll use `openjdk:21-jdk-slim`, which is a good starting point.
+*   **Base Image (`FROM`):** Every `Dockerfile` must start with a `FROM` instruction. This specifies the parent image from which you are building. For a Java application, a base image containing a Java Development Kit (JDK) is required for compilation. We'll use `eclipse-temurin:21-jdk-noble`, which is a good starting point.
 *   **Working Directory (`WORKDIR`):** The `WORKDIR` instruction sets the working directory for any subsequent `RUN`, `CMD`, `ENTRYPOINT`, `COPY`, and `ADD` instructions. This helps keep your `Dockerfile` clean and organized.
 
 Your task is to add these two instructions to the `Dockerfile`.
@@ -18,7 +18,7 @@ Excellent! The foundation of the Dockerfile is now set.
 {% /feedback %}
 
 {% feedback pattern="AssertionFailedError:" type="error" %}
-Not quite. Make sure your Dockerfile includes both a `FROM` instruction for `openjdk:21-jdk-slim` and a `WORKDIR` instruction set to `/app`.
+Not quite. Make sure your Dockerfile includes both a `FROM` instruction for `eclipse-temurin:21-jdk-noble` and a `WORKDIR` instruction set to `/app`.
 {% /feedback %}
 {% /check %}
 {% /task %}
@@ -84,7 +84,7 @@ Not quite. You just need to modify the first `FROM` line by adding `AS build` at
 {% step title="Task 5.2: Define the Final Runtime Stage" %}
 {% task %}
 The goal of a multi-stage build is to have a small final image. To achieve this, we'll create a new, second stage that is based on a much smaller image. Instead of the full JDK, we only need the Java Runtime Environment (JRE) to run our compiled code.\n\nYour task is to define this new final stage.
-*   Add a new `FROM` instruction using the `openjdk:21-jre-slim` image. This image is significantly smaller because it doesn't include the compiler and other development tools.
+*   Add a new `FROM` instruction using the `eclipse-temurin:21-jre-noble` image. This image is significantly smaller because it doesn't include the compiler and other development tools.
 *   Set the `WORKDIR` for this new stage to `/app`.
 {% check type="command" query="bash runTest.sh TestStep5Task2" %}
 
@@ -93,7 +93,7 @@ Perfect! The lightweight final stage is now defined.
 {% /feedback %}
 
 {% feedback pattern="AssertionFailedError:" type="error" %}
-Almost. Make sure you add a new `FROM openjdk:21-jre-slim` instruction and also set the `WORKDIR` for this new stage.
+Almost. Make sure you add a new `FROM eclipse-temurin:21-jre-noble` instruction and also set the `WORKDIR` for this new stage.
 {% /feedback %}
 {% /check %}
 {% /task %}
