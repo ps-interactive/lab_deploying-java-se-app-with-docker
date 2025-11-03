@@ -1,9 +1,9 @@
-FROM openjdk:21-jdk-slim AS build
+FROM eclipse-temurin:21-jdk-noble AS build
 WORKDIR /app
 
 COPY . .
 RUN javac src/main/java/com/example/SimpleWebServer.java
 
 # Second Stage
-FROM openjdk:21-jdk-slim
+FROM eclipse-temurin:21-jre-noble
 WORKDIR /app

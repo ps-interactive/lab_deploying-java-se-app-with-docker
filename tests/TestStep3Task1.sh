@@ -1,6 +1,6 @@
 #!/bin/bash
-if ! grep -q -E "^\s*FROM\s+openjdk:21-jdk-slim" Dockerfile; then
-  echo "AssertionFailedError: The Dockerfile should start with 'FROM openjdk:21-jdk-slim'."
+if ! grep -q -E "^\s*FROM\s+eclipse-temurin:21-jdk-noble" Dockerfile; then
+  echo "AssertionFailedError: The Dockerfile should start with 'FROM eclipse-temurin:21-jdk-noble'."
   exit 1
 fi
 if ! grep -q -E "^\s*WORKDIR\s+/app" Dockerfile; then

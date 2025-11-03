@@ -13,8 +13,8 @@ second_stage=$(awk '/^\s*FROM/{c++}c==1' Dockerfile)
 
 # Check for the second FROM statement and its WORKDIR
 # Note: We pipe the $second_stage variable into grep
-if ! echo "$second_stage" | grep -q -E "^\s*FROM\s+openjdk:21-jdk-slim"; then
-  echo "AssertionFailedError: The second stage must use 'FROM openjdk:21-jdk-slim'."
+if ! echo "$second_stage" | grep -q -E "^\s*FROM\s+eclipse-temurin:21-jre-noble"; then
+  echo "AssertionFailedError: The second stage must use 'FROM eclipse-temurin:21-jre-noble'."
   exit 1
 fi
 
