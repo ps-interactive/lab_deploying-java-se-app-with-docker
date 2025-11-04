@@ -9,7 +9,7 @@ fi
 
 # Isolate the second stage using awk
 # (c++ increments 'c' *after* checking it, so c==1 finds the second block)
-second_stage=$(awk '/^\s*FROM/{c++}c==1' Dockerfile)
+second_stage=$(awk '/^\s*FROM/{c++}c==2' Dockerfile)
 
 # Check for the second FROM statement and its WORKDIR
 # Note: We pipe the $second_stage variable into grep
