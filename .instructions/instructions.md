@@ -49,7 +49,7 @@ Check your instructions carefully. You need to `EXPOSE` port 8080 and provide th
 {% /check %}
 {% /task %}
 {% /step %}
-{% step title="Task 5.1: Name the Build Stage" %}
+{% step title="TestStep5Task1" %}
 {% task %}
 
 {% check type="command" query="bash runTest.sh TestStep5Task1" %}
@@ -65,7 +65,7 @@ Not quite. You just need to modify the first `FROM` line by adding `AS build` at
 {% /task %}
 {% /step %}
 
-{% step title="Task 5.2: Define the Final Runtime Stage" %}
+{% step title="TestStep5Task2" %}
 {% task %}
 
 {% check type="command" query="bash runTest.sh TestStep5Task2" %}
@@ -81,7 +81,7 @@ Almost. Make sure you add a new `FROM eclipse-temurin:21-jre-noble` instruction 
 {% /task %}
 {% /step %}
 
-{% step title="Task 5.3: Copy Artifact and Set Final Command" %}
+{% step title="TestStep5Task3" %}
 {% task %}
 
 {% check type="command" query="bash runTest.sh TestStep5Task3" %}
