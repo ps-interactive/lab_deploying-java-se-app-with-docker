@@ -51,9 +51,7 @@ Check your instructions carefully. You need to `EXPOSE` port 8080 and provide th
 {% /step %}
 {% step title="Task 5.1: Name the Build Stage" %}
 {% task %}
-Now we'll begin refactoring our `Dockerfile` to use a multi-stage build. The first step is to officially name our existing set of instructions as the 'build' stage.
 
-By adding `AS build` to the first `FROM` instruction, you create a named stage. This allows later stages to refer back to this stage and copy artifacts from it. This is the foundation of a multi-stage build, clearly separating the environment used for compiling from the one used for running.
 {% check type="command" query="bash runTest.sh TestStep5Task1" %}
 
 {% feedback pattern=".*" type="success" %}
@@ -69,9 +67,7 @@ Not quite. You just need to modify the first `FROM` line by adding `AS build` at
 
 {% step title="Task 5.2: Define the Final Runtime Stage" %}
 {% task %}
-The goal of a multi-stage build is to have a small final image. To achieve this, we'll create a new, second stage that is based on a much smaller image. Instead of the full JDK, we only need the Java Runtime Environment (JRE) to run our compiled code.\n\nYour task is to define this new final stage.
-*   Add a new `FROM` instruction using the `eclipse-temurin:21-jre-noble` image. This image is significantly smaller because it doesn't include the compiler and other development tools.
-*   Set the `WORKDIR` for this new stage to `/app`.
+
 {% check type="command" query="bash runTest.sh TestStep5Task2" %}
 
 {% feedback pattern=".*" type="success" %}
@@ -87,11 +83,7 @@ Almost. Make sure you add a new `FROM eclipse-temurin:21-jre-noble` instruction 
 
 {% step title="Task 5.3: Copy Artifact and Set Final Command" %}
 {% task %}
-The new stage is empty. We need to copy the compiled application from the `build` stage into our new, final stage. We also need to tell this stage how to run the application.
-*   **`COPY --from`**: Use a special version of the `COPY` instruction to copy files *from another stage*. You need to copy the compiled `SimpleWebServer.class` file from the `build` stage into the current stage.
-*   **Final `CMD`**: Redefine the `CMD` for this final stage. The command is similar to before, but the classpath might be different depending on where you copy the class file.
 
-Complete the `Dockerfile` by adding these final instructions.
 {% check type="command" query="bash runTest.sh TestStep5Task3" %}
 
 {% feedback pattern=".*" type="success" %}
