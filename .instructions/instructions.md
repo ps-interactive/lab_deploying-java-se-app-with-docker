@@ -3,14 +3,9 @@
 Here you'll find the checks for the objectives you find in the lab instructions. Wait until the lab instructions tell you to run the check before proceeding.
 {% steps %}
 ## Objective Checks
-{% step title="Task 3.1: Define Base Image and Working Directory" %}
+{% step title="TestStep3Task1" %}
 {% task %}
-The first step in creating a Docker image is defining its foundation. In the `Dockerfile`, you need to specify a base image and set up the container's filesystem.
 
-*   **Base Image (`FROM`):** Every `Dockerfile` must start with a `FROM` instruction. This specifies the parent image from which you are building. For a Java application, a base image containing a Java Development Kit (JDK) is required for compilation. We'll use `eclipse-temurin:21-jdk-noble`, which is a good starting point.
-*   **Working Directory (`WORKDIR`):** The `WORKDIR` instruction sets the working directory for any subsequent `RUN`, `CMD`, `ENTRYPOINT`, `COPY`, and `ADD` instructions. This helps keep your `Dockerfile` clean and organized.
-
-Your task is to add these two instructions to the `Dockerfile`.
 {% check type="command" query="bash runTest.sh TestStep3Task1" %}
 
 {% feedback pattern=".*" type="success" %}
@@ -24,13 +19,8 @@ Not quite. Make sure your Dockerfile includes both a `FROM` instruction for `ecl
 {% /task %}
 {% /step %}
 
-{% step title="Task 3.2: Copy Source Code and Compile" %}
+{% step title="TestStep3Task2" %}
 {% task %}
-With the base image and working directory set up, the next step is to get your application code into the image and compile it
-*   **Copying Files (`COPY`):** The `COPY` instruction is used to copy files or directories from your host machine (the build context) into the container's filesystem. You'll need to copy all the project files into the `/app` directory you defined earlier.
-*   **Running Commands (`RUN`):** The `RUN` instruction executes commands in a new layer on top of the current image. You will use it to invoke the Java compiler (`javac`) to compile your source code into bytecode (`.class` files).
-
-Your task is to add the `COPY` and `RUN` instructions to build your application inside the image.
 {% check type="command" query="bash runTest.sh TestStep3Task2" %}
 
 {% feedback pattern=".*" type="success" %}
@@ -44,13 +34,9 @@ Almost there. Ensure you have a `COPY . .` instruction to copy the files and a `
 {% /task %}
 {% /step %}
 
-{% step title="Task 3.3: Expose Port and Define Run Command" %}
+{% step title="TestStep3Task3" %}
 {% task %}
-The final step for our initial `Dockerfile` is to tell Docker how to run the compiled application and how to allow network traffic to it.
-*   **Exposing Ports (`EXPOSE`):** The `EXPOSE` instruction informs Docker that the container listens on the specified network ports at runtime. It functions as a type of documentation between the person who builds the image and the person who runs the container. Our Java application listens on port 8080.
-*   **Default Command (`CMD`):** The `CMD` instruction provides the default command to execute when a container is run from the image. For our application, this involves using the `java` command to run the main class.
 
-Your task is to add the `EXPOSE` and `CMD` instructions to make your image runnable.
 {% check type="command" query="bash runTest.sh TestStep3Task3" %}
 
 {% feedback pattern=".*" type="success" %}
