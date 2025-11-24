@@ -7,4 +7,4 @@ if ! grep -q -E "^\s*WORKDIR\s+/app" Dockerfile; then
   echo "AssertionFailedError: The Dockerfile should set the 'WORKDIR' to '/app'."
   exit 1
 fi
-echo "Test Passed"
+echo "Excellent! The foundation of the Dockerfile is now set."

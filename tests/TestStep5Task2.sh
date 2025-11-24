@@ -23,4 +23,4 @@ if ! echo "$second_stage" | grep -q -E "^\s*WORKDIR\s+/app"; then
   exit 1
 fi
 
-echo "Test Passed"
+echo "Perfect! The lightweight final stage is now defined."

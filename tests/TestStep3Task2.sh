@@ -7,4 +7,4 @@ if ! grep -q -E "^\s*RUN\s+javac\s+src/main/java/com/example/SimpleWebServer.jav
   echo "AssertionFailedError: The Dockerfile should contain a 'RUN javac ...' instruction to compile the source file."
   exit 1
 fi
-echo "Test Passed"
+echo "Great job! The application code is now copied and compiled within the image."

@@ -14,4 +14,4 @@ if ! grep -q -E '^\s*CMD\s*\[\s*"java",\s*"com\.example\.SimpleWebServer"\s*\]' 
   exit 1
 fi
 
-echo "Test Passed"
+echo "Perfect! Your first Dockerfile is complete and ready to be built."

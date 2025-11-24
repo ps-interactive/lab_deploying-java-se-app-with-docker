@@ -7,4 +7,4 @@ if ! grep -q -E '"java",\s*"-cp",\s*"src/main/java"' Dockerfile; then
   echo "AssertionFailedError: The CMD instruction is not correctly formatted to run the Java application."
   exit 1
 fi
-echo "Test Passed"
+echo "Perfect! Your first Dockerfile is complete and ready to be built."
